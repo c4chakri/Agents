@@ -1,0 +1,31 @@
+
+const HARDHAT_DAO_UTILS = {
+    DAO_MANAGEMENT_ADDRESS: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    DAO_FACTORY_ADDRESS: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
+
+}
+
+const SEPOLIA_DAO_UTILS = {
+    DAO_MANAGEMENT_ADDRESS: "0x4D019b2784B473f7D221dBbf14c98D7642264060",
+    DAO_FACTORY_ADDRESS: "0x0a6B4b6aE7a2F5d4cB3A7Bc2f4C4C6C6C6C6C6C6"
+}
+
+const HOLESKY_DAO_UTILS = {
+    DAO_MANAGEMENT_ADDRESS: "0xCC137065cD4Cc2282dcfEC743B196C987f8Ab908",
+    DAO_FACTORY_ADDRESS: "0x55D820D556F4B8fEdCa9d68f3144995f593f6694"
+}
+
+// const networksData=(chainId) => {
+//     switch (chainId) {
+//         case 1:
+//             return HARDHAT_DAO_UTILS;
+//         case 11155111:
+//             return SEPOLIA_DAO_UTILS;
+//         case 80001:
+//             return HOLEKSYS_DAO_UTILS;
+//         default:
+//             return null;
+//     }
+// }
+
+module.exports = { HARDHAT_DAO_UTILS, SEPOLIA_DAO_UTILS,HOLESKY_DAO_UTILS }
