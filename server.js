@@ -19,6 +19,7 @@ const {getUTData} = require('./daoControllers/getUTdata.js')
 const { ERC20Code } = require('./ERC20Code.js')
 const {getGTdata} = require('./daoControllers/getGTdata.js')
 const {getProposalData} = require('./daoControllers/getProposalData.js')
+const {deployERC721Contract} = require('./deployERC721.js')
 const app = express()
 const port = 8080
 
@@ -52,18 +53,28 @@ app.post('/create-general-contract', async (req, res) => {
 	}
 })
 
-app.post('/create-erc721-contract', async (req, res) => {
-	try {
-		const erc721Options = req.body
-		const { abi, bytecode } = await generateERC721Contract(erc721Options)
-		res.status(200).json({ abi, bytecode })
-	} catch (error) {
-		res.status(500).json({
-			code: 500,
-			message: error,
-		})
-	}
-})
+
+app.post("/deploy-erc721", async (req, res) => {
+    try {
+        const options = req.body;
+		console.log("Options:", options);		
+		const { initialOwner, tokenName, tokenSymbol, chainId } = options.params;
+
+    if (!initialOwner || !tokenName || !tokenSymbol || !chainId) {
+        return res.status(400).json({ error: "Missing required parameters" });
+    }
+    
+        const result = await deployERC721Contract(
+			initialOwner,
+			tokenName,
+			tokenSymbol,
+			chainId
+		);
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 app.post('/create-erc1155-contract', async (req, res) => {
 	try {
